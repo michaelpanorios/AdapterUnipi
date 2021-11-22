@@ -13,7 +13,7 @@ function downloadData(contentType,data,filename){
 }
 
 function formToXml(form){
-    var xmldata=['<?xml version="1.0"?>'];
+    var xmldata=['<?xml version="1.0" encoding="UTF-8"?>'];
     xmldata.push("<book>");
     var inputs=form.elements;
     for(var i=0;i<inputs.length;i++){
@@ -30,7 +30,6 @@ function formToXml(form){
 
 
 function download(form){
-
     var data=formToXml(form);
     console.log(data);
     downloadData("text/xml",data,"book-order.xml");
