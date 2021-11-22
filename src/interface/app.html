@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Book ordering</title>
+        <script type="text/javascript" src="export-xml.js"></script>
+        <style>
+            input[type=text] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 3px solid #766767;
+                -webkit-transition: 0.5s;
+                transition: 0.5s;
+                outline: none;
+            }
+
+            input[type=text]:focus {
+                border: 3px solid #555;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Book orders</h2>
+            <form action="" method="POST">
+                <label for="author">Author:</label><br>
+                <input type="text" id="author" name="author"><br>
+
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title"><br>
+
+                <label for="genre">Genre:</label><br>
+                <input type="text" id="genre" name="genre"><br>
+
+                <label for="price">Price:</label><br>
+                <input type="text" id="price" name="price"><br>
+
+                <label for="publish_date">Publish date:</label><br>
+                <input type="text" id="publish_date" name="publish_date"><br>
+
+                <label for="description">Description:</label><br>
+                <input type="text" id="description" name="description"><br>
+
+                <button type="button" onclick="download(this.form)" id="submitButton">Submit order</button>
+            </form>
+    </body>
+</html>
