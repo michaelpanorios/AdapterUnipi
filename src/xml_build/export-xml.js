@@ -1,5 +1,4 @@
 function downloadData(contentType,data,filename){
-
     var link=document.createElement("A");
     link.setAttribute("href",encodeURI("data:"+contentType+","+data));
     link.setAttribute("style","display:none");
@@ -14,13 +13,13 @@ function downloadData(contentType,data,filename){
 
 function formToXml(form){
     var xmldata=['<?xml version="1.0" encoding="UTF-8"?>'];
+    const elNames = ["author", "title", "genre", "price", "publish_date", "description"];
     xmldata.push("<book>");
     var inputs=form.elements;
     for(var i=0;i<inputs.length;i++){
-        var el=document.createElement("ELEMENT");
+        var el=document.createElement(elNames[i]);
         if (inputs[i].name){
-            el.setAttribute("name",inputs[i].name);
-            el.setAttribute("value",inputs[i].value);
+            el.innerHTML = inputs[i].value;
             xmldata.push(el.outerHTML);
         }
     }
@@ -34,3 +33,4 @@ function download(form){
     console.log(data);
     downloadData("text/xml",data,"book-order.xml");
 }
+
