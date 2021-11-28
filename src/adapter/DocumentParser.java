@@ -12,6 +12,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DocumentParser {
 
@@ -34,12 +36,17 @@ public class DocumentParser {
         Document doc = db.parse(xmlFile);
         doc.getDocumentElement().normalize();
         NodeList nodeList = doc.getElementsByTagName("book");
+        List<String> elements = new ArrayList<>();
+        String[] tagNames = new String[]{"author","title","genre","price","publish_date","description"};
+
         for (int itr = 0; itr < nodeList.getLength(); itr++) {
             Node node = nodeList.item(itr);
             System.out.println("\nNode name: " + node.getNodeName());
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
-                System.out.println("Author: " + element.getElementsByTagName("author").item(0).getTextContent());
+                for (String tagName : tagNames)
+                    elements.add(element.getElementsByTagName(tagName).item(0).getTextContent());
+                System.out.println("Author: " + elements.add(element.getElementsByTagName("author").item(0).getTextContent()));
                 System.out.println("Title: " + element.getElementsByTagName("title").item(0).getTextContent());
                 System.out.println("Genre: " + element.getElementsByTagName("genre").item(0).getTextContent());
                 System.out.println("Price: " + element.getElementsByTagName("price").item(0).getTextContent());
@@ -47,8 +54,7 @@ public class DocumentParser {
                 System.out.println("Description: " + element.getElementsByTagName("description").item(0).getTextContent());
             }
         }
+
     }
-
-
 
 }
