@@ -25,6 +25,7 @@ public class DocumentParser {
             System.out.println("XML input:");
             showXMLfile(xmlFile);
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,26 +36,22 @@ public class DocumentParser {
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.parse(xmlFile);
         doc.getDocumentElement().normalize();
+
         NodeList nodeList = doc.getElementsByTagName("book");
-        List<String> elements = new ArrayList<>();
-        String[] tagNames = new String[]{"author","title","genre","price","publish_date","description"};
+        Node node = nodeList.item(0);
+        ElementsBookOrder elementsBookOrder = new ElementsBookOrder();
 
-        for (int itr = 0; itr < nodeList.getLength(); itr++) {
-            Node node = nodeList.item(itr);
-            System.out.println("\nNode name: " + node.getNodeName());
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) node;
-                for (String tagName : tagNames)
-                    elements.add(element.getElementsByTagName(tagName).item(0).getTextContent());
-                System.out.println("Author: " + elements.add(element.getElementsByTagName("author").item(0).getTextContent()));
-                System.out.println("Title: " + element.getElementsByTagName("title").item(0).getTextContent());
-                System.out.println("Genre: " + element.getElementsByTagName("genre").item(0).getTextContent());
-                System.out.println("Price: " + element.getElementsByTagName("price").item(0).getTextContent());
-                System.out.println("Publish date: " + element.getElementsByTagName("publish_date").item(0).getTextContent());
-                System.out.println("Description: " + element.getElementsByTagName("description").item(0).getTextContent());
-            }
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element element = (Element) node;
+            /** Setting the elements of the XML order file */
+            elementsBookOrder.setAuthor(element.getElementsByTagName("author").item(0).getTextContent());
+            elementsBookOrder.setTitle(element.getElementsByTagName("title").item(0).getTextContent());
+            elementsBookOrder.setGenre(element.getElementsByTagName("genre").item(0).getTextContent());
+            elementsBookOrder.setPrice(element.getElementsByTagName("price").item(0).getTextContent());
+            elementsBookOrder.setPublish_date(element.getElementsByTagName("publish_date").item(0).getTextContent());
+            elementsBookOrder.setDescription(element.getElementsByTagName("description").item(0).getTextContent());
+            System.out.println(elementsBookOrder.toString());
         }
-
     }
 
 }

@@ -1,7 +1,5 @@
 package adapter;
 
-import java.util.List;
-
 public class ElementsBookOrder {
     private String author;
     private String title;
@@ -9,18 +7,16 @@ public class ElementsBookOrder {
     private String price;
     private String publish_date;
     private String description;
-    private List<String> xmlElements;
 
     public ElementsBookOrder() {}
 
-    public ElementsBookOrder(String author, String title, String genre, String price, String publish_date, String description, List<String> xmlElements) {
+    public ElementsBookOrder(String author, String title, String genre, String price, String publish_date, String description) {
         this.author = author;
         this.title = title;
         this.genre = genre;
         this.price = price;
         this.publish_date = publish_date;
         this.description = description;
-        this.xmlElements = xmlElements;
     }
 
     public String getAuthor() {
@@ -71,13 +67,15 @@ public class ElementsBookOrder {
         this.description = description;
     }
 
-    public List<String> getXmlElements() {
-        return xmlElements;
+    @Override
+    public String toString() {
+        return "ElementsBookOrder{" +
+                "author='" + author + '\'' +
+                ",title='" + title + '\'' +
+                ",genre='" + genre + '\'' +
+                ", price='" + price + '\'' +
+                ", publish_date='" + publish_date + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
-
-    public void setXmlElements(List<String> xmlElements) {
-        this.xmlElements = xmlElements;
-    }
-
-
 }
